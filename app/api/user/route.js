@@ -25,6 +25,9 @@ export async function GET(req, {params}) {
     const userDetail = await prisma.user.findUnique({
         where: {
             id
+        },
+        include: {
+            like: true
         }
     });
     return NextResponse.json(userDetail);

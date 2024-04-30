@@ -7,6 +7,9 @@ export async function GET(req, {params}) {
     const flower = await prisma.flower.findFirst({
         where: {
             slug
+        },
+        include: {
+            like: true
         }
     });
     return NextResponse.json(flower);

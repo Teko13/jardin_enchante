@@ -14,7 +14,7 @@
 }
 
 *::selection {
-  background-color: var(--pink);
+  background-color: #e84393;
   color: var(--white);
 }
 
@@ -28,7 +28,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--pink);
+  background-color: #e84393;
 }
 
 html {
