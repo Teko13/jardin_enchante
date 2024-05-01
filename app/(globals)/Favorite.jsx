@@ -22,7 +22,6 @@ function Favorite() {
     }
     useEffect(() => {
       getUserLikes();
-      console.log(likes);
     }, [handleUserLikes, user])
     
   return (

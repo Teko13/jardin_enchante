@@ -3,6 +3,7 @@ import Header from "./(globals)/header";
 import "./globals.css";
 import { UserProvider } from "./(context)/userContext";
 import Footer from "./(globals)/Footer";
+import { CartProvider } from "./(context)/cartContext";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
@@ -15,13 +16,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
         <body className={rubik.className}>
-          <UserProvider>
-          <Header />
-            <main>
-              {children}
-            </main>
-            <Footer />
-          </UserProvider>
+          <CartProvider>
+            <UserProvider>
+            <Header />
+              <main className="w-full min-h-screen">
+                {children}
+              </main>
+              <Footer />
+            </UserProvider>
+          </CartProvider>
         </body>
     </html>
   );

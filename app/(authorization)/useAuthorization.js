@@ -1,4 +1,4 @@
-// hooks/useAuthorization.js
+"use client"
 import Cookies from 'js-cookie';
 import { useUser } from '../(context)/userContext';
 import { useRouter } from 'next/navigation';

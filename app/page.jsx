@@ -2,7 +2,7 @@ import Image from "next/image";
 import { homeBg } from "./(assets)";
 import { styles } from "./style";
 import { getFlowers } from "./(flower_manager)/flower_getter";
-import Flower from "./Flower";
+import {Flower} from "./Flower";
 import Link from "next/link";
 
 export default async function Home() {

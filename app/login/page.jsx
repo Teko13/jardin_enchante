@@ -12,7 +12,6 @@ export default function Login() {
     const [error, setError] = useState(false);
 
     const handleSubmit = (e) => {
-        console.log('oi');
         e.preventDefault();
         const url = "http://localhost:3000/api/login";
         const body = JSON.stringify({

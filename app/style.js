@@ -1,5 +1,5 @@
 const styles = {
-  border: "border-black border-solid border-black",
+  border: "border-black border-solid border-[3px]",
 
   btnPrimary: "border-transparent border-[1px] hover:text-black hover:bg-white border-solid hover:border-pink inline-block rounded-[0.5rem]  text-[1.8rem] text-white cursor-pointer px-[3rem] py-[1rem] bg-pink",
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getFlowers } from '../(flower_manager)/flower_getter';
-import Flower from '../Flower';
+import {Flower} from '../Flower';
 import Link from 'next/link';
 import { styles } from '../style';
 
