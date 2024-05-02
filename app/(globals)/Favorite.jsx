@@ -4,6 +4,7 @@ import { favoriteIcon } from '../(assets)'
 import Image from 'next/image'
 import { useUser } from '../(context)/userContext'
 import { useAuthorization } from '../(authorization)/useAuthorization';
+import Link from 'next/link'
 function Favorite() {
     const {user, handleUserLikes, likes, setLikes} = useUser();
     const auth = useAuthorization();
@@ -25,12 +26,12 @@ function Favorite() {
     }, [handleUserLikes, user])
     
   return (
-    <button className='relative w-[3rem]'>
+    <Link href="/cart" className=' inline-block relative w-[3rem]'>
         <div className="w-full">
             <Image src={favoriteIcon} />
         </div>
         <div className="rounded-full p-1 bg-pink absolute top-[-50%] right-[-50%] text-white ">{likes.length}</div>
-    </button>
+    </Link>
   )
 }
 

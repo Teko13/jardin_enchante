@@ -5,7 +5,7 @@ export const getFlowers = async (limit = 0) => {
             revalidate: 0
         }
     });
-    return flowers.json();
+    return await flowers.json();
 }
 export const getFlower  = async (slug) => {
     const url = "http://localhost:3000/api/flower/" + slug;
@@ -13,6 +13,18 @@ export const getFlower  = async (slug) => {
         nex: {
             revalidate: 0
         }
+    });
+    return await data.json();
+}
+export const getFlowersById = async (ids) => {
+    const url = "http://localhost:3000/api/flower/";
+    const body = JSON.stringify({ids});
+    const data = await fetch(url, {
+        next: {
+            revalidate: 0
+        },
+        method: "POST",
+        body
     });
     return await data.json();
 }

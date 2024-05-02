@@ -26,8 +26,9 @@ export const CartProvider = ({children}) => {
         const checkExistingIndex = items.findIndex(current => current.id === id);
         const item = {id, quantity};
         if(Number.isInteger(checkExistingIndex) && checkExistingIndex >= 0 ) {
-            const updateItems = items;
-            updateItems[checkExistingIndex].quantity = quantity;
+            // create new array with item's value, (NO SIMPLY REFERENCE BUT NEW ARRAY);
+            const updateItems = [...items];
+            updateItems[checkExistingIndex].quantity = Number(quantity);
             setItems(updateItems);
             return;
         }
@@ -40,6 +41,7 @@ export const CartProvider = ({children}) => {
       init();
     }, []);
     useEffect(() => {
+        console.log("appel d'effect ");
       if(items.length > 0) {
         saveToLocalStorage();
       }
