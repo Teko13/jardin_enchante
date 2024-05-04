@@ -1,4 +1,7 @@
 "use client"
+
+import { useUser } from "./userContext";
+
 const { useContext, createContext, useState, useEffect } = require("react");
 
 const CartContext = createContext(null);
@@ -6,8 +9,9 @@ const CartContext = createContext(null);
 export const CartProvider = ({children}) => {
     const [items, setItems] = useState([]);
     const localStorageName = "le-jardin-enchante-storage";
+    const {user} = useUser();
     const init = () => {
-        const localItems = localStorage.getItem(localStorageName);
+        const localItems = `${localStorage.getItem(localStorageName)}_${user.email}`;
         if(localItems) {
             try {
                 const itemsArray = JSON.parse(localItems);
@@ -38,10 +42,11 @@ export const CartProvider = ({children}) => {
         localStorage.setItem(localStorageName, JSON.stringify(items));
     }
     useEffect(() => {
-      init();
-    }, []);
+      if(user) {
+        init();
+      }
+    }, [user]);
     useEffect(() => {
-        console.log("appel d'effect ");
       if(items.length > 0) {
         saveToLocalStorage();
       }

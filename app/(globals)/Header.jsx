@@ -3,6 +3,7 @@ import React from 'react'
 import { styles } from '../style'
 import Cart from './Cart'
 import Favorite from './Favorite'
+import Auth from './Auth'
 
 function Header() {
   return (
@@ -32,10 +33,7 @@ function Header() {
             <Cart />
             <Favorite />
             <div className="flex items-center">
-                <div className="flex items-center gap-[1rem]">
-                    <Link href="/login" className={`${styles.btnPrimary}`} >Connecter</Link>
-                <Link href="/login" className={`${styles.btnSecondary}`} >Inscrir</Link>
-                </div>
+                <Auth />
             </div>
         </div>
     </nav>

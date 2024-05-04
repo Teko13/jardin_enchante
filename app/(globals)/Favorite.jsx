@@ -22,11 +22,13 @@ function Favorite() {
         })
     }
     useEffect(() => {
-      getUserLikes();
+      if(user) {
+        getUserLikes();
+      }
     }, [handleUserLikes, user])
     
   return (
-    <Link href="/cart" className=' inline-block relative w-[3rem]'>
+    <Link href="/cart" className=' inline-block relative w-[2rem]'>
         <div className="w-full">
             <Image src={favoriteIcon} />
         </div>

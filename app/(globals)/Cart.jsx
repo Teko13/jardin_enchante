@@ -7,7 +7,7 @@ import { useCart } from '../(context)/cartContext'
 function Cart() {
    const {items} = useCart();
   return (
-    <button className='relative w-[3rem]'>
+    <button className='relative w-[2rem]'>
         <div className="w-full">
             <Image src={shopIcon} />
         </div>

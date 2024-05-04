@@ -16,15 +16,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
         <body className={rubik.className}>
+          <UserProvider>
           <CartProvider>
-            <UserProvider>
             <Header />
               <main className="w-full min-h-screen">
                 {children}
               </main>
               <Footer />
+            </CartProvider>
             </UserProvider>
-          </CartProvider>
         </body>
     </html>
   );
