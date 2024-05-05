@@ -45,7 +45,7 @@ export const UserProvider = ({children}) => {
             })
             .then((res) => {
                 setUser(res);
-                setLikes(res.like)
+                setLikes(res.like);
             })
             .catch((e) => {
                 router.push("login");

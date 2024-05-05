@@ -10,8 +10,8 @@ export default function Auth() {
         <>
             {!user && (
                 <div className="flex items-center gap-[1rem]">
-                    <Link href="/login" className={`${styles.btnPrimary}`}>Connecter</Link>
-                    <Link href="/login" className={`${styles.btnSecondary}`}>Inscrir</Link>
+                    <Link href="/login" className={`${styles.btnPrimary}`}>Connexion</Link>
+                    <Link href="/signup" className={`${styles.btnSecondary}`}>Inscription</Link>
                 </div>
             ) || (
                 <div className="flex items-center gap-[1rem]">

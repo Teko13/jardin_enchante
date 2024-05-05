@@ -5,8 +5,8 @@ import { useUser } from '../(context)/userContext';
 import { customFetch } from '../customeFetch';
 
 function useFlower(flower) {
+    console.log(flower);
   const auth = useAuthorization();
-  const [likesNumber, setLikesNumber] = useState(flower.like.length);
   const [flowerLikes, setFlowerLikes] = useState(flower.like);
   const [isLiked, setIsLiked] = useState(false);
   const {custom} = customFetch()
@@ -30,10 +30,8 @@ function useFlower(flower) {
         },
         headers: auth
     });
-    console.log(await newLikes);
     if(newLikes) {
         const json = await newLikes;
-        setLikesNumber(json.length);
         setFlowerLikes(json);
         setHandleUserLikes(!handleUserLikes);
     }
@@ -42,7 +40,7 @@ function useFlower(flower) {
     setIsLiked(checkLike());
   }, [flowerLikes, user]);
 
-  return { likesNumber, isLiked, handleLike };
+  return { flowerLikes, isLiked, handleLike };
 }
 
 export default useFlower;

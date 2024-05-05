@@ -8,5 +8,5 @@ export function middleware(request) {
 }
 
 export const config = {
-    matcher: ['/cart'],
+    matcher: ['/cart', "/favorite"],
 };

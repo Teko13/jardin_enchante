@@ -9,14 +9,14 @@ import { useRouter } from 'next/navigation'
 import { useCart } from './(context)/cartContext'
 
 export function Flower({flower}) {
-  const { likesNumber, isLiked, handleLike } = useFlower(flower);
+  const { flowerLikes, isLiked, handleLike } = useFlower(flower);
   return (
     <div className={`${styles.border} p-3 rounded-lg relative bg-light-white shadow-custom w-full`}>
         <span className="absolute inline-block p-2 bg-red font-black text-white text-[1.4rem] top-0 left-0">
             {flower.price/100} €
         </span>
         <button onClick={() => handleLike()} className="absolute cursor-pointer inline-flex gap-2 top-2 right-2 ">
-           <Image src={(isLiked && pinkFavorite) || favoriteIcon} width={20} height={20} alt='icone favorie' /> ({likesNumber})
+           <Image src={(isLiked && pinkFavorite) || favoriteIcon} width={20} height={20} alt='icone favorie' /> ({flower.like.length})
         </button>
         <div className="flex w-full flex-col items-center gap-4">
             <div className="flex items-center w-full overflow-hidden rounded-lg">
@@ -33,7 +33,7 @@ export function Flower({flower}) {
 
 export function FlowerDetail({flower}) {
     const router = useRouter();
-    const { likesNumber, isLiked, handleLike } = useFlower(flower);
+    const { flowerLikes, isLiked, handleLike } = useFlower(flower);
     const {addItem} = useCart();
     const [quantity, setQuantity] = useState(1);
     return (
@@ -43,7 +43,7 @@ export function FlowerDetail({flower}) {
                 <div className={`${styles.border} rounded-[1rem] overflow-hidden flex flex-col gap-[2rem] items-center p-7`}>
                     <div className=' relative p-3 w-full'>
                         <button onClick={() => handleLike()} className="absolute cursor-pointer inline-flex gap-2 top-2 left-2 ">
-           <Image src={(isLiked && pinkFavorite) || favoriteIcon} width={20} height={20} alt='icone favorie' /> ({likesNumber})
+           <Image src={(isLiked && pinkFavorite) || favoriteIcon} width={20} height={20} alt='icone favorie' /> ({flowerLikes.length})
                         </button>
                         <button onClick={() => router.back()} className='absolute cursor-pointer inline-flex gap-2 -top-4  text-[1.8rem] right-2'>
                             X

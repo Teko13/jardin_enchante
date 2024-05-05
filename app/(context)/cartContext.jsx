@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation";
 import { useUser } from "./userContext";
 
 const { useContext, createContext, useState, useEffect } = require("react");
@@ -7,11 +8,13 @@ const { useContext, createContext, useState, useEffect } = require("react");
 const CartContext = createContext(null);
 
 export const CartProvider = ({children}) => {
+    const router = useRouter();
     const [items, setItems] = useState([]);
-    const localStorageName = "le-jardin-enchante-storage";
+    const [localStorageName, setLocalStorageName] = useState(null);
     const {user} = useUser();
     const init = () => {
-        const localItems = `${localStorage.getItem(localStorageName)}_${user.email}`;
+        setLocalStorageName(`le-jardin-enchante-storage_${user.email}`)
+        const localItems = localStorage.getItem(`le-jardin-enchante-storage_${user.email}`);
         if(localItems) {
             try {
                 const itemsArray = JSON.parse(localItems);
@@ -24,19 +27,24 @@ export const CartProvider = ({children}) => {
         }
     }
     const addItem = (id, quantity) => {
-        if(quantity < 1) {
-            quantity = 1;
+        if(user) {
+            if(quantity < 1) {
+                quantity = 1;
+            }
+            const checkExistingIndex = items.findIndex(current => current.id === id);
+            const item = {id, quantity};
+            if(Number.isInteger(checkExistingIndex) && checkExistingIndex >= 0 ) {
+                // create new array with item's value, (NO SIMPLY REFERENCE BUT NEW ARRAY);
+                const updateItems = [...items];
+                updateItems[checkExistingIndex].quantity = Number(quantity);
+                setItems(updateItems);
+                return;
+            }
+            setItems(prevItems => [...prevItems, item]);
         }
-        const checkExistingIndex = items.findIndex(current => current.id === id);
-        const item = {id, quantity};
-        if(Number.isInteger(checkExistingIndex) && checkExistingIndex >= 0 ) {
-            // create new array with item's value, (NO SIMPLY REFERENCE BUT NEW ARRAY);
-            const updateItems = [...items];
-            updateItems[checkExistingIndex].quantity = Number(quantity);
-            setItems(updateItems);
-            return;
+        else {
+            router.push("/login")
         }
-        setItems(prevItems => [...prevItems, item]);
     }
     const saveToLocalStorage = () => {
         localStorage.setItem(localStorageName, JSON.stringify(items));
@@ -44,6 +52,10 @@ export const CartProvider = ({children}) => {
     useEffect(() => {
       if(user) {
         init();
+      }
+      else {
+        setItems([]);
+        setLocalStorageName(null);
       }
     }, [user]);
     useEffect(() => {
