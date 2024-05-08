@@ -15,7 +15,7 @@ export function customFetch() {
         return res.json();
     })
     .catch(e => {
-        log("Une erreur est survenue");
+        console.log();("Une erreur est survenue", e);
     })
     }
     return {custom};

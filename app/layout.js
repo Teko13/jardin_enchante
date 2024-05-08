@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
           <UserProvider>
           <CartProvider>
             <Header />
-              <main className="w-full min-h-screen">
+              <main className="w-full min-h-screen pt-[5rem]">
                 {children}
               </main>
               <Footer />

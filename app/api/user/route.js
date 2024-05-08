@@ -27,7 +27,15 @@ export async function GET(req, {params}) {
             id
         },
         include: {
-            like: true
+            like: {
+                include: {
+                    flower: {
+                        include: {
+                            like: true
+                        }
+                    }
+                }
+            }
         }
     });
     return NextResponse.json(userDetail);

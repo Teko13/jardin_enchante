@@ -4,38 +4,42 @@ import { styles } from '../style'
 import Cart from './Cart'
 import Favorite from './Favorite'
 import Auth from './Auth'
+import AdminNavbar from '../admin/AdminNavbar'
 
 function Header() {
   return (
-    <nav className='bg-white z-[99] grid grid-cols-[25%_50%_25%] p-3 items-center w-full fixed top-O left-0 right-0'>
-        <div className="w-full flex items-center pl-2">
-            <h1 className='text-[2rem] font-black'>
-                Logo
-            </h1>
-        </div>
-        <div className="w-full flex items-center justify-center">
-            <ul className='flex gap-[1rem] items-center'>
-                <li className='text-black hover:text-pink'>
-                    <Link href="/">Accueil</Link>
-                </li>
-                <li className='text-black hover:text-pink'>
-                    <Link href="/shop">Boutique</Link>
-                </li>
-                <li className='text-black hover:text-pink'>
-                    <Link href="#">A propos</Link>
-                </li>
-                <li className='text-black hover:text-pink'>
-                    <Link href="#">Contact</Link>
-                </li>
-            </ul>
-        </div>
-        <div className="w-full flex items-center gap-[2rem] justify-end">
-            <Cart />
-            <Favorite />
-            <div className="flex items-center">
-                <Auth />
+    <nav className='w-full z-[99] fixed top-O left-0 right-0'>
+        <div className='bg-white grid grid-cols-[25%_50%_25%] p-3 items-center w-full'>
+            <div className="w-full flex items-center pl-2">
+                <h1 className='text-[2rem] font-black'>
+                    Logo
+                </h1>
+            </div>
+            <div className="w-full flex items-center justify-center">
+                <ul className='flex gap-[1rem] items-center'>
+                    <li className='text-black hover:text-pink'>
+                        <Link href="/">Accueil</Link>
+                    </li>
+                    <li className='text-black hover:text-pink'>
+                        <Link href="/shop">Boutique</Link>
+                    </li>
+                    <li className='text-black hover:text-pink'>
+                        <Link href="#">A propos</Link>
+                    </li>
+                    <li className='text-black hover:text-pink'>
+                        <Link href="#">Contact</Link>
+                    </li>
+                </ul>
+            </div>
+            <div className="w-full flex items-center gap-[2rem] justify-end">
+                <Cart />
+                <Favorite />
+                <div className="flex items-center">
+                    <Auth />
+                </div>
             </div>
         </div>
+        <AdminNavbar />
     </nav>
   )
 }

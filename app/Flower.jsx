@@ -1,12 +1,14 @@
 "use client"
-import React, { useEffect, useState } from 'react'
-import { styles } from './style'
-import Image from 'next/image'
+import React, { useEffect, useState } from 'react';
+import { styles } from './style';
+import Image from 'next/image';
 import { favoriteIcon, pinkFavorite } from './(assets)'
 import Link from 'next/link'
 import useFlower from './(flower_manager)/useFlower'
 import { useRouter } from 'next/navigation'
 import { useCart } from './(context)/cartContext'
+import { useAuthorization } from './(authorization)/useAuthorization'
+import { customFetch } from './customeFetch'
 
 export function Flower({flower}) {
   const { flowerLikes, isLiked, handleLike } = useFlower(flower);
@@ -16,10 +18,10 @@ export function Flower({flower}) {
             {flower.price/100} €
         </span>
         <button onClick={() => handleLike()} className="absolute cursor-pointer inline-flex gap-2 top-2 right-2 ">
-           <Image src={(isLiked && pinkFavorite) || favoriteIcon} width={20} height={20} alt='icone favorie' /> ({flower.like.length})
+           <Image src={(isLiked && pinkFavorite) || favoriteIcon} width={20} height={20} alt='icone favorie' /> ({flowerLikes.length})
         </button>
         <div className="flex w-full flex-col items-center gap-4">
-            <div className="flex items-center w-full overflow-hidden rounded-lg">
+            <div className="flex overflow-hidden rounded-lg h-[35rem] bg-red">
                 <img src={flower.image_url} alt='image du fleure' />
             </div>
             <div className='text-[1.8rem] font-black'>
@@ -70,4 +72,37 @@ export function FlowerDetail({flower}) {
             </div>
         </div>
     )
+}
+
+export function FlowerAdminView({flower}) {
+  const { flowerLikes, isLiked, handleLike } = useFlower(flower);
+  const auth = useAuthorization();
+  const url = `${window.location.origin}/api/admin/flower/${flower.id}`; 
+  const {custom} = customFetch();
+  const handleDelete = () => {
+    custom(url, {
+        method: "DELETE",
+        headers: auth
+    }).then(() => {window.location.reload()})
+  }
+  return (
+    <div className={`${styles.border} p-3 rounded-lg relative bg-light-white shadow-custom w-full`}>
+        <span className="absolute inline-block p-2 bg-red font-black text-white text-[1.4rem] top-0 left-0">
+            {flower.price/100} €
+        </span>
+        <button onClick={() => handleLike()} className="absolute cursor-pointer inline-flex gap-2 top-2 right-2 ">
+           <Image src={(isLiked && pinkFavorite) || favoriteIcon} width={20} height={20} alt='icone favorie' /> ({flowerLikes.length})
+        </button>
+        <div className="flex w-full flex-col items-center gap-4">
+            <div className="flex overflow-hidden rounded-lg h-[35rem] bg-red">
+                <img src={flower.image_url} alt='image du fleure' />
+            </div>
+            <div className='text-[1.8rem] font-black'>
+                {flower.name}
+            </div>
+            <Link href={`${window.location.origin}/admin/flower/update/${flower.id}`} className={`${styles.btnPrimary} w-full`}>Modifier</Link>
+            <button onClick={() => handleDelete()} className={`${styles.btnWarning} w-full`}>Supprimer</button>
+        </div>
+    </div>
+  )
 }

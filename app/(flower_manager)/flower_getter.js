@@ -10,7 +10,7 @@ export const getFlowers = async (limit = 0) => {
 export const getFlower  = async (slug) => {
     const url = "http://localhost:3000/api/flower/" + slug;
     const data = await fetch(url, {
-        nex: {
+        next: {
             revalidate: 0
         }
     });

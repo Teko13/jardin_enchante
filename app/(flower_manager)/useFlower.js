@@ -5,7 +5,6 @@ import { useUser } from '../(context)/userContext';
 import { customFetch } from '../customeFetch';
 
 function useFlower(flower) {
-    console.log(flower);
   const auth = useAuthorization();
   const [flowerLikes, setFlowerLikes] = useState(flower.like);
   const [isLiked, setIsLiked] = useState(false);

@@ -4,7 +4,8 @@ import {Flower} from '../Flower';
 import { useUser } from '../(context)/userContext';
 
 export default function Page() {
-    const {user} = useUser();
+    const {likes} = useUser();
+    console.log(likes);
   return (
     <div className='flex flex-col items-center gap-10'>
       <div className="flex w-full h-[50vh] bg-black items-center justify-center">
@@ -19,7 +20,7 @@ export default function Page() {
             Mes Favoris
           </h1>
           <div className="grid gap-10 w-full grid-cols-3">
-            {user?.like.map((flower, index) => {
+            {likes.map((flower, index) => {
               return <Flower key={index} flower={flower} />
 }) || "..."}
           </div>
