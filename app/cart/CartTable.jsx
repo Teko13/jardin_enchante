@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../(context)/cartContext';
-import Image from 'next/image';
 import { getFlowersById } from '../(flower_manager)/flower_getter';
+import Link from 'next/link';
 
 export default function CartTable() {
   const {items} = useCart();
@@ -50,6 +50,7 @@ export default function CartTable() {
           </tr>
         </tfoot>
       </table>
+      <Link href={`${window.location.origin}/checkout`} >Commander</Link>
     </div>
   );
 }
