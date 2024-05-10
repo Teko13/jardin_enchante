@@ -35,7 +35,7 @@ export const UserProvider = ({children}) => {
     }
     const init = () => {
         if(!user) {
-            const url = "http://localhost:3000/api/user";
+            const url = `${window.location.origin}/api/user`;
             const auth = { Authorization: `Bearer ${token}` }
             return custom(url, {
                 next: {

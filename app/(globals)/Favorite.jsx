@@ -9,7 +9,8 @@ function Favorite() {
     const {user, handleUserLikes, likes, setLikes} = useUser();
     const auth = useAuthorization();
     const getUserLikes = () => {
-        const url = 'http://localhost:3000/api/favorite';
+        const origin = window.location.origin;
+        const url = `${origin}/api/favorite`;
         const headers = auth;
         fetch(url, {
             next: {

@@ -1,15 +1,15 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import getStripe from './stripe'; // Assurez-vous d'importer getStripe du nouveau fichier
+import { Elements } from '@stripe/react-stripe-js';
 import { customFetch } from '../customeFetch';
 import { useAuthorization } from '../(authorization)/useAuthorization';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
 
 export default function CartTable() {
-  const [clientSecret, setClientSecret] = useState(null);
+  const [clientSecret, setClientSecret] = useState("");
   const {custom} = customFetch();
-  const stripePromiss = loadStripe("pk_test_51PEc3aGvSvbw4SQ69DJnJWSNIkXv0F2Q0RgLsJIzmrnJJ5BAEj6aXfUAPax6kqRilyAlDpcIkrjqZAp9Q8vx45Ka000MEw9xoU")
   const auth = useAuthorization();
+
   const getSecret = async () => {
     const url = `${window.location.origin}/api/order/checkout`;
     const secret = await custom(url, {
@@ -17,35 +17,44 @@ export default function CartTable() {
         headers: auth,
         body: {}
     });
-    const json = await secret.json();
-    console.log("le secret est", json.clientSecret);
-    return json.clientSecret;
+    return secret.clientSecret;
   };
-  const appearance = {
-    theme: "stripe"
-  }
-  const options = {
-    appearance,
-    clientSecret
-  }
+  let loaded = false;
   useEffect(() => {
-    if(typeof clientSecret !== "string") {
-        setClientSecret(getSecret());
+    if(!clientSecret && !loaded) {
+        loaded = true;
+      getSecret()
+      .then(res => {
+          setClientSecret(res);
+          console.log("secret = ", res);
+      })
     }
   }, [])
-  
+
+  const stripePromise = getStripe(); // Utilisez getStripe au lieu de loadStripe directement
+
+  const appearance = { theme: "stripe" };
+  const options = { clientSecret, appearance };
+
   return (
-    <div>
-        {clientSecret && (
-            <Elements options={options} stripe={stripePromiss}>
-                <form>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id='email' />
-                    </div>
-                </form>
-            </Elements>
-        )}
+    <div className='flex flex-col items-center gap-10 w-full'>
+      <div className="flex w-full h-[50vh] bg-black items-center justify-center">
+        <h1 className='text-white text-[4rem] font-black'>
+          VOTRE COMMANDE
+        </h1>
+      </div>
+      {clientSecret && (
+        <Elements options={options} stripe={stripePromise}>
+          <form className="" id="form">
+				<div id="target" className=""></div>
+				<button id="submit" type="submit" className="">
+					<div id="button-text" className="">Obtenir</div>
+					<div id="spinner" className=""></div>
+				</button>
+			</form>
+			<div id="payment-message"></div>
+        </Elements>
+      )}
     </div>
   );
 }
