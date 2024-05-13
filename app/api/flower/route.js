@@ -28,6 +28,5 @@ export async function POST(req, {params}) {
         }
     }
   const flowers = await prisma.flower.findMany(options);
-  console.log(flowers);
   return NextResponse.json(flowers);
 }

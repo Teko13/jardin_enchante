@@ -49,6 +49,10 @@ export const CartProvider = ({children}) => {
     const saveToLocalStorage = () => {
         localStorage.setItem(localStorageName, JSON.stringify(items));
     }
+    const clearCart = () => {
+        localStorage.setItem(localStorageName, JSON.stringify([]));
+        setItems([]);
+    }
     useEffect(() => {
       if(user) {
         init();
@@ -64,7 +68,7 @@ export const CartProvider = ({children}) => {
       }
     }, [items]);
     return (
-        <CartContext.Provider value={{items, setItems, addItem}}>
+        <CartContext.Provider value={{items, setItems, addItem, clearCart}}>
             {children}
         </CartContext.Provider>
     )

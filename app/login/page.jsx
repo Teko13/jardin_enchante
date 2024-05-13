@@ -13,7 +13,7 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const url = "http://localhost:3000/api/login";
+        const url = `${window.location.origin}/api/login`;
         const body = JSON.stringify({
             email,
             password
@@ -32,6 +32,7 @@ export default function Login() {
             router.push("/");
         })
         .catch((e) => {
+            console.log(e.message);
             setError(true);
         })
     }

@@ -13,7 +13,7 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const url = "http://localhost:3000/api/signup";
+        const url = `${window.location.origin}/signup`;
         const body = JSON.stringify({
             first_name,
             last_name,
