@@ -39,6 +39,7 @@ model Flower {
 model Order {
   id          Int           @id @default(autoincrement())
   userId      Int
+  date        DateTime      @default(now())
   user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   orderDetail OrderDetail[]
 }

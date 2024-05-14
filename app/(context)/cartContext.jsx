@@ -10,11 +10,10 @@ const CartContext = createContext(null);
 export const CartProvider = ({children}) => {
     const router = useRouter();
     const [items, setItems] = useState([]);
-    const [localStorageName, setLocalStorageName] = useState(null);
     const {user} = useUser();
+    const localStorageName = user?.email || null;
     const init = () => {
-        setLocalStorageName(`le-jardin-enchante-storage_${user.email}`)
-        const localItems = localStorage.getItem(`le-jardin-enchante-storage_${user.email}`);
+        const localItems = localStorage.getItem(localStorageName);
         if(localItems) {
             try {
                 const itemsArray = JSON.parse(localItems);
@@ -49,17 +48,12 @@ export const CartProvider = ({children}) => {
     const saveToLocalStorage = () => {
         localStorage.setItem(localStorageName, JSON.stringify(items));
     }
-    const clearCart = () => {
-        localStorage.setItem(localStorageName, JSON.stringify([]));
-        setItems([]);
-    }
     useEffect(() => {
       if(user) {
         init();
       }
       else {
         setItems([]);
-        setLocalStorageName(null);
       }
     }, [user]);
     useEffect(() => {
@@ -68,7 +62,7 @@ export const CartProvider = ({children}) => {
       }
     }, [items]);
     return (
-        <CartContext.Provider value={{items, setItems, addItem, clearCart}}>
+        <CartContext.Provider value={{items, setItems, addItem}}>
             {children}
         </CartContext.Provider>
     )

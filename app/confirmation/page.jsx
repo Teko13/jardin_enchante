@@ -2,16 +2,22 @@
 import { useEffect, useState } from 'react';
 import { customFetch } from '@/app/customeFetch';
 import { useAuthorization } from '@/app/(authorization)/useAuthorization';
+import { useUser } from '../(context)/userContext';
+import Link from 'next/link';
+import { styles } from '../style';
 
 export default function ConfirmOrder({params}) {
   const [pi, setPi] = useState("");
+  const {user} = useUser();
+  const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
   const {custom} = customFetch();
+  const urlParams = new URLSearchParams(window.location.search);
+  const orderId = urlParams.get("id");
   const auth = useAuthorization();
   const checkStatus = () => {
-    const params = new URLSearchParams(window.location.search);
-    const paymentIntent = params.get('payment_intent');
-    //console.log(paramValue);
+    setIsLoaded(true);
+    const paymentIntent = urlParams.get('payment_intent');
     const url = `${window.location.origin}/api/order/checkout/${paymentIntent}`;
     try {
         custom(url, {
@@ -25,13 +31,11 @@ export default function ConfirmOrder({params}) {
         setError(true);
     }
   }
-  let isLoaded = false;
   useEffect(() => {
-    if(pi.length === 0 && !isLoaded) {
-        isLoaded = true;
+    if(user && !isLoaded) {
         checkStatus();
     }
-  }, []);
+  }, [user]);
   
 
   return (
@@ -42,15 +46,18 @@ export default function ConfirmOrder({params}) {
         </h1>
       </div>
       {(pi && !error) && (
-        <div>
-            merci commande confirmé
+        <div className='flex items-center flex-col w-[50%] m-auto justify-start'>
+            <h1 className='text-[3rem] text-green-800'>Merci: Votre commande a bien été validée</h1>
+            <p className='text-[2rem] text-green-800'>Votre numéro de commande est: {orderId}</p>
+            <Link href="/" className={`${styles.btnPrimary}`}>Retourner à l'accueil</Link>
         </div>
       )}
       {
         error && (
-            <div>
-                Une erreur s'est produit
-            </div>
+            <div className='flex items-center flex-col w-[50%] m-auto justify-start'>
+              <h1 className='text-[3rem] text-red-500'>Merci: Votre commande a bien été validée</h1>
+              <Link href="/shop" className={`${styles.btnPrimary}`}>Retour au boutique</Link>
+          </div>
         )
       }
     </div>

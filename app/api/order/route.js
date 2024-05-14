@@ -7,20 +7,24 @@ export async function POST(req, {params}) {
     if(!user) {
         return new NextResponse(null, {status: 401});
     }
-    const newOrder = await prisma.order.create({
-        data: {userId: user.userId}
-    });
-    const {orderItems} = await req.json();
-    orderItems.forEach(async (flower) => {
-        await prisma.orderDetail.create({
-            data: {
-                orderId: newOrder.id,
-                flowerId: flower.flowerId,
-                quantity: flower.quantity
-            }
-        })
-    });
-    return NextResponse.json(newOrder)
+    try {
+        const orderItems = await req.json();
+        const newOrder = await prisma.order.create({
+            data: {userId: user.userId}
+        });
+        orderItems.forEach(async (flower) => {
+            await prisma.orderDetail.create({
+                data: {
+                    orderId: newOrder.id,
+                    flowerId: flower.flowerId,
+                    quantity: flower.quantity
+                }
+            })
+        });
+        return NextResponse.json(newOrder)
+    } catch (e) {
+        return new NextResponse(null, {status: 400});
+    }
 }
 export async function GET(req, {params}) {
     const user = isAuth(req);
