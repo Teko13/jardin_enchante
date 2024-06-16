@@ -1,5 +1,5 @@
 import { Rubik } from "next/font/google";
-import Header from "./(globals)/header";
+import Header from "./(globals)/Header";
 import "./globals.css";
 import { UserProvider } from "./(context)/userContext";
 import Footer from "./(globals)/Footer";
