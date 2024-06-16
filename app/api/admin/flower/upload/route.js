@@ -15,9 +15,3 @@ export async function POST(request) {
    });
    return NextResponse.json(blob);
 }
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
