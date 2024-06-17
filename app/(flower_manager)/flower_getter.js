@@ -1,6 +1,5 @@
 export const getFlowers = async (limit = 0) => {
-    const origin = process.env.ORIGIN;
-    console.log('Origin:', origin);
+    const origin = process.env.ORIGIN || 'http://localhost:3000';
     let path = (limit > 0) ? `${origin}/api/flower?limit=${limit}` : `${origin}/api/flower`;
     console.log('Fetching URL:', path);
 
@@ -16,7 +15,7 @@ export const getFlowers = async (limit = 0) => {
 
         if (!response.ok) {
             console.error(`HTTP error! status: ${response.status}, message: ${responseText}`);
-            throw new Error(`HTTP error! status: ${response.status}, message: ${responseText}`);
+            return [];
         }
 
         try {
@@ -24,13 +23,14 @@ export const getFlowers = async (limit = 0) => {
             return data;
         } catch (jsonError) {
             console.error('JSON parsing failed:', jsonError.message);
-            throw new Error(`JSON parsing failed: ${jsonError.message}`);
+            return [];
         }
     } catch (error) {
         console.error('Fetch failed:', error.message);
-        return []; // Retourner un tableau vide en cas d'erreur
+        return [];
     }
 };
+
 
 export const getFlower = async (slug) => {
     const origin = process.env.ORIGIN;
