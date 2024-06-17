@@ -9,7 +9,8 @@ export const getFlowers = async (limit = 0) => {
     return await flowers.json();
 }
 export const getFlower  = async (slug) => {
-    const origin = process.env.ORIGIN;
+    try {
+        const origin = process.env.ORIGIN;
     const url = `${origin}/api/flower/${slug}`;
     const data = await fetch(url, {
         next: {
@@ -17,6 +18,9 @@ export const getFlower  = async (slug) => {
         }
     });
     return await data.json();
+    } catch (error) {
+       return []; 
+    }
 }
 export const getFlowersById = async (ids) => {
     let origin = process.env.ORIGIN;
