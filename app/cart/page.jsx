@@ -1,5 +1,5 @@
+"use client";
 import React from 'react'
-import { getFlowersById } from '../(flower_manager)/flower_getter';
 import CartTable from './CartTable';
 
 export default function page() {
