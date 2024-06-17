@@ -1,27 +1,67 @@
 export const getFlowers = async (limit = 0) => {
     const origin = process.env.ORIGIN;
-    let path = (limit > 0) ? `${origin}/api/flower?limit=${limit}` : `${origin}/api/flower`
-    const flowers = await fetch(path, {
-        next: {
-            revalidate: 0
-        }
-    });
-    return await flowers.json();
-}
-export const getFlower  = async (slug) => {
+    console.log('Origin:', origin);
+    let path = (limit > 0) ? `${origin}/api/flower?limit=${limit}` : `${origin}/api/flower`;
+    console.log('Fetching URL:', path);
+
     try {
-        const origin = process.env.ORIGIN;
-    const url = `${origin}/api/flower/${slug}`;
-    const data = await fetch(url, {
-        next: {
-            revalidate: 0
+        const response = await fetch(path, {
+            next: {
+                revalidate: 0
+            }
+        });
+
+        const responseText = await response.text();
+        console.log('Response text:', responseText);
+
+        if (!response.ok) {
+            console.error(`HTTP error! status: ${response.status}, message: ${responseText}`);
+            throw new Error(`HTTP error! status: ${response.status}, message: ${responseText}`);
         }
-    });
-    return await data.json();
+
+        try {
+            const data = JSON.parse(responseText);
+            return data;
+        } catch (jsonError) {
+            console.error('JSON parsing failed:', jsonError.message);
+            throw new Error(`JSON parsing failed: ${jsonError.message}`);
+        }
     } catch (error) {
-       return []; 
+        console.error('Fetch failed:', error.message);
+        return []; // Retourner un tableau vide en cas d'erreur
     }
-}
+};
+
+export const getFlower = async (slug) => {
+    const origin = process.env.ORIGIN;
+    const url = `${origin}/api/flower/${slug}`;
+    try {
+        const response = await fetch(url, {
+            next: {
+                revalidate: 0
+            }
+        });
+
+        const responseText = await response.text(); // Lire la réponse comme texte
+
+        if (!response.ok) {
+            console.error(`HTTP error! status: ${response.status}, message: ${responseText}`);
+            throw new Error(`HTTP error! status: ${response.status}, message: ${responseText}`);
+        }
+
+        try {
+            const data = JSON.parse(responseText); // Parser le JSON après vérification
+            return data;
+        } catch (jsonError) {
+            console.error('JSON parsing failed:', jsonError.message);
+            throw new Error(`JSON parsing failed: ${jsonError.message}`);
+        }
+    } catch (error) {
+        console.error('Fetch failed:', error.message);
+        return null; // Retourne null en cas d'erreur
+    }
+};
+
 export const getFlowersById = async (ids) => {
     let origin = process.env.ORIGIN;
     if(origin === undefined) {
