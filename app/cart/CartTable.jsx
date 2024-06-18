@@ -5,7 +5,7 @@ import { getFlowersById } from '../(flower_manager)/flower_getter';
 import Link from 'next/link';
 
 export default function CartTable() {
-  const {items} = useCart();
+  const { items } = useCart();
   const [detailItems, setDetailItems] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
 
@@ -50,7 +50,9 @@ export default function CartTable() {
           </tr>
         </tfoot>
       </table>
-      <Link href={`${window.location.origin}/checkout`} >Commander</Link>
+      {typeof window !== 'undefined' && (
+        <Link href={`${window.location.origin}/checkout`} >Commander</Link>
+      )}
     </div>
   );
 }
