@@ -13,7 +13,7 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const url = `${window.location.origin}/signup`;
+        const url = `${window.location.origin}/api/signup`;
         const body = JSON.stringify({
             first_name,
             last_name,
@@ -80,7 +80,7 @@ export default function Login() {
                      onChange={(e) => setEmail(e.target.value)} required />
                 </div>
                 <div className='flex flex-col items-start gap-1'>
-                    <label htmlFor="password">Email</label>
+                    <label htmlFor="password">Mot de Passe</label>
                     <input
                       className={`${styles.border} bg-white inline-block p-1 w-full focus:border-pink rounded-lg`} type="password"
                       name="password"
