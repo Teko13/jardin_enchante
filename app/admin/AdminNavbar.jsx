@@ -15,7 +15,7 @@ export default function AdminNavbar() {
                             <Link href="/admin/flower/create">Créer un produit</Link>
                         </li>
                         <li>
-                            <Link href="/admin/flower">Tout les produit</Link>
+                            <Link href="/admin/flower">Gérer les produits</Link>
                         </li>
                     </ul>
                 </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { getFlower } from '../(flower_manager)/flower_getter';
 import { FlowerDetail } from '../Flower';
 
+
 export default async function Page({ params }) {
     const flower = await getFlower(params.slug);
     if (!flower) {

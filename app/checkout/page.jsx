@@ -42,7 +42,7 @@ export default function Checkout() {
 
   return (
     <div className='flex flex-col items-center gap-10 w-full'>
-      <div className="flex w-full h-[50vh] bg-black items-center justify-center">
+      <div className="flex w-full lg:h-[50vh] h-[30vh] bg-black items-center justify-center">
         <h2 className='text-white text-[4rem] font-black'>
           PAIEMENT
         </h2>
@@ -50,7 +50,7 @@ export default function Checkout() {
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <h1 className='text-[2rem] font-black'>Information de paiement</h1>
-          <p className="p-3 bg-red max-w-[40%] rounded-[1rem] text-white flexmy-6">
+          <p className="p-3 bg-red lg:max-w-[40%] max-w-[90%] rounded-[1rem] text-white flexmy-6">
             Attention : Ne saisissez pas vos informations bancaires réelles.
             Ceci est un démo. Pour effectuer des tests,
              vous pouvez accéder à des cartes de crédit de test sur le site officiel de Stripe en cliquant <a className='font-black' target="_blank" href="https://docs.stripe.com/testing?locale=fr-FR">ICI</a>.

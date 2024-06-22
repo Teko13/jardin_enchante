@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useCart } from '../(context)/cartContext';
 import { getFlowersById } from '../(flower_manager)/flower_getter';
 import Link from 'next/link';
+import { styles } from '../style';
 
 export default function CartTable() {
   const { items } = useCart();
@@ -51,7 +52,7 @@ export default function CartTable() {
         </tfoot>
       </table>
       {typeof window !== 'undefined' && (
-        <Link href={`${window.location.origin}/checkout`} >Commander</Link>
+        <Link className={`${styles.btnPrimary} w-fit my-9`} href={`${window.location.origin}/checkout`} >Commander</Link>
       )}
     </div>
   );

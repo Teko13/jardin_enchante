@@ -4,7 +4,7 @@ import React from 'react'
 function Footer() {
   return (
     <footer className='w-full'>
-        <div className='w-full grid grid-cols-3 items-center p-5 bg-black text-white'>
+        <div className='w-full grid lg:grid-cols-3 grid-cols-1 items-center lg:pb-5 p-5 pb-[4rem] bg-black text-white'>
         <div className="flex flex-col gap-4 items-center">
             <h3 className='text-[2rem] font-bold'>Lien rapide</h3>
             <ul className='flex flex-col gap-3'>

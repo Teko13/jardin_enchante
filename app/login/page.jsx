@@ -38,7 +38,7 @@ export default function Login() {
     }
   return (
     <div className='min-w-screen min-h-screen flex items-center justify-center'>
-        <div className={`${styles.border} rounded-[2rem] w-[30%] flex flex-col items-center gap-10 p-4`}>
+        <div className={`${styles.border} rounded-[2rem] lg:w-[30%] w-[80%] md:w-[40%] flex flex-col items-center gap-10 p-4`}>
             <h1 className='text-[2rem] font-black'>Connexion</h1>
             {
                 error && (
@@ -59,7 +59,7 @@ export default function Login() {
                      onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className='flex flex-col items-start gap-1'>
-                    <label htmlFor="password">Email</label>
+                    <label htmlFor="password">Mot de passe</label>
                     <input
                       className={`${styles.border} bg-white inline-block p-1 w-full focus:border-pink rounded-lg`} type="password"
                       name="password"

@@ -8,7 +8,7 @@ export default async function Page() {
     const flowers = await getFlowers();
   return (
     <div className='flex flex-col items-center gap-10'>
-      <div className="flex w-full h-[50vh] bg-black items-center justify-center">
+      <div className="flex w-full lg:h-[50vh] h-[30vh] bg-black items-center justify-center">
         <h1 className='text-white text-[4rem] font-black'>
           BOUTIQUE
         </h1>
@@ -19,7 +19,7 @@ export default async function Page() {
           <h1 className="font-black text-[3rem]">
             Tout nos produits
           </h1>
-          <div className="grid gap-10 w-full grid-cols-3">
+          <div className="grid gap-10 w-full lg:grid-cols-3 grid-cols-1 md:grid-cols-2">
             {flowers.map((flower, index) => (
               <Flower key={index} flower={flower} />
             ))}

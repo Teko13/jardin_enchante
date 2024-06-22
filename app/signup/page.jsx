@@ -39,7 +39,7 @@ export default function Login() {
     }
   return (
     <div className='min-w-screen min-h-screen flex items-center justify-center'>
-        <div className={`${styles.border} rounded-[2rem] w-[30%] flex flex-col items-center gap-10 p-4`}>
+        <div className={`${styles.border} rounded-[2rem] lg:w-[30%] w-[80%] md:w-[40%] flex flex-col items-center gap-10 p-4`}>
             <h1 className='text-[2rem] font-black'>Connexion</h1>
             {
                 error && (

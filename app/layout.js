@@ -4,6 +4,7 @@ import "./globals.css";
 import { UserProvider } from "./(context)/userContext";
 import Footer from "./(globals)/Footer";
 import { CartProvider } from "./(context)/cartContext";
+import { ToastContainer } from "react-toastify";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
           <UserProvider>
           <CartProvider>
             <Header />
+            <ToastContainer />
               <main className="w-full min-h-screen pt-[5rem]">
                 {children}
               </main>

@@ -11,7 +11,6 @@ export const getFlowers = async (limit = 0) => {
         });
 
         const responseText = await response.text();
-        console.log('Response text:', responseText);
 
         if (!response.ok) {
             console.error(`HTTP error! status: ${response.status}, message: ${responseText}`);

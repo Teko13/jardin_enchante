@@ -22,7 +22,7 @@ function useFlower(flower) {
     return check;
   }
   const handleLike = async () => {
-    const url = "http://localhost:3000/api/favorite/" + flower.id;
+    const url = window.location.origin + "/api/favorite/" + flower.id;
     const newLikes = await custom(url, {
         next: {
             revalidate: 0

@@ -8,7 +8,9 @@ import useFlower from './(flower_manager)/useFlower'
 import { useRouter } from 'next/navigation'
 import { useCart } from './(context)/cartContext'
 import { useAuthorization } from './(authorization)/useAuthorization'
-import { customFetch } from './customeFetch'
+import { customFetch } from './customeFetch';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Flower({flower}) {
   const { flowerLikes, isLiked, handleLike } = useFlower(flower);
@@ -33,45 +35,51 @@ export function Flower({flower}) {
   )
 }
 
-export function FlowerDetail({flower}) {
-    const router = useRouter();
-    const { flowerLikes, isLiked, handleLike } = useFlower(flower);
-    const {addItem} = useCart();
-    const [quantity, setQuantity] = useState(1);
-    return (
-        <div className="flex flex-col w-[35%] my-[8rem]">
-            <div className="flex flex-col gap-5 items-center">
-                <h1 className=' text-[3rem] font-black'>{flower.name}</h1>
-                <div className={`${styles.border} rounded-[1rem] overflow-hidden flex flex-col gap-[2rem] items-center p-7`}>
-                    <div className=' relative p-3 w-full'>
-                        <button onClick={() => handleLike()} className="absolute cursor-pointer inline-flex gap-2 top-2 left-2 ">
-           <Image src={(isLiked && pinkFavorite) || favoriteIcon} width={20} height={20} alt='icone favorie' /> ({flowerLikes.length})
-                        </button>
-                        <button onClick={() => router.back()} className='absolute cursor-pointer inline-flex gap-2 -top-4  text-[1.8rem] right-2'>
-                            X
-                        </button>
-                    </div>
-                    <div className="w-[55%]">
-                        <img src={flower.image_url} alt="image de la fleur" />
-                    </div>
-                    <h2 className='text-[2rem]'>
-                        {flower.price/100} €
-                    </h2>
-                    <p className='text-center'>
-                        {flower.description}
-                    </p>
-                    <div className="flex flex-col gap-3 my-2 items-start w-full">
-                        <label htmlFor="qty">Quantité</label>
-                        <input onChange={(e) => setQuantity(e.target.value)} type="number" id="qty" defaultValue="1" min="1" max="100" className={`${styles.border} inline-block w-full p-3 text-[1.2] rounded-lg`} />
-                    </div>
-                    <div className='grid grid-cols-2 gap-5'>
-                        <button onClick={() => addItem(flower.id, quantity)} className={`${styles.btnPrimary} inline-block w-full`}>Ajouter au panier</button>
-                        <Link href="#" className={`${styles.btnSecondary} inline-block w-full`}>Acheter</Link>
-                    </div>
-                </div>
-            </div>
+export function FlowerDetail({ flower }) {
+  const router = useRouter();
+  const { flowerLikes, isLiked, handleLike } = useFlower(flower);
+  const { addItem } = useCart();
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddFlower = () => {
+    addItem(flower.id, quantity);
+    toast.success("Votre article a bien été ajouté");
+  }
+
+  return (
+    <div className="flex flex-col lg:w-[30%] w-[80%] md:w-[40%] my-[8rem]">
+      <div className="flex flex-col gap-5 items-center">
+        <h1 className=' text-[3rem] font-black'>{flower.name}</h1>
+        <div className={`${styles.border} rounded-[1rem] overflow-hidden flex flex-col gap-[2rem] items-center p-7`}>
+          <div className=' relative p-3 w-full'>
+            <button onClick={() => handleLike()} className="absolute cursor-pointer inline-flex gap-2 top-2 left-2 ">
+              <Image src={(isLiked && pinkFavorite) || favoriteIcon} width={20} height={20} alt='icone favorie' /> ({flowerLikes.length})
+            </button>
+            <button onClick={() => router.back()} className='absolute cursor-pointer inline-flex gap-2 -top-4 text-[1.8rem] right-2'>
+              X
+            </button>
+          </div>
+          <div className="w-[55%]">
+            <img src={flower.image_url} alt="image de la fleur" />
+          </div>
+          <h2 className='text-[2rem]'>
+            {flower.price / 100} €
+          </h2>
+          <p className='text-center'>
+            {flower.description}
+          </p>
+          <div className="flex flex-col gap-3 my-2 items-start w-full">
+            <label htmlFor="qty">Quantité</label>
+            <input onChange={(e) => setQuantity(e.target.value)} type="number" id="qty" defaultValue="1" min="1" max="100" className={`${styles.border} inline-block w-full p-3 text-[1.2] rounded-lg`} />
+          </div>
+          <div className='grid grid-cols-2 gap-5'>
+            <button onClick={() => handleAddFlower()} className={`${styles.btnPrimary} inline-block w-full`}>Ajouter au panier</button>
+            <Link href="/cart" className={`${styles.btnSecondary} inline-block w-full`}>Acheter</Link>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export function FlowerAdminView({flower}) {

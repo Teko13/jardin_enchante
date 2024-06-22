@@ -33,7 +33,7 @@ export default async function Page() {
 
     return (
         <div className='flex flex-col items-center gap-10'>
-            <div className="flex w-full h-[50vh] bg-black items-center justify-center">
+            <div className="flex w-full lg:h-[50vh] h-[30vh] bg-black items-center justify-center">
                 <h1 className='text-white text-[4rem] font-black'>
                     TOUTES LES FLEURS PUBLIÉES
                 </h1>
@@ -44,7 +44,7 @@ export default async function Page() {
                     <h1 className="font-black text-[3rem]">
                         Toutes les fleurs
                     </h1>
-                    <div className="grid gap-10 w-full grid-cols-3">
+                    <div className="grid gap-10 w-full lg:grid-cols-3 grid-cols-1">
                         {flowers.map((flower, index) => (
                             <FlowerAdminView key={index} flower={flower} />
                         ))}

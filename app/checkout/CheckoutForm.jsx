@@ -78,13 +78,13 @@ export default function CheckoutForm({totalAmount}) {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit} className="grid grid-cols-2 gap-5 my-[5rem]">
+    <form id="payment-form" onSubmit={handleSubmit} className="grid lg:grid-cols-2 grid-cols-1 gap-5 my-[5rem] p-3">
         <div className="w-full flex flex-col items-start gap-5 p-[1rem] ">
             <div className="w-full flex justify-between">
                 <h3 className="text-[1.7rem] font-black">Total</h3>
                 <span className="text-[1.2rem] font-black">{totalAmount/100} €</span>
             </div>
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-start w-full">
                 <label htmlFor="address">Rue</label>
                 <input 
                  required

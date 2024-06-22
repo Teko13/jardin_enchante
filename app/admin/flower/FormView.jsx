@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function FormView({ name, description, price, prevImg, handleImageChange, handleSubmit, setName, setDescription, setPrice }) {
   return (
-    <div className="grid grid-cols-2 w-[50%] items-center">
+    <div className="grid lg:grid-cols-2 grid-cols-1 lg:w-[50%] w-[80%] items-center">
       <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col gap-[1rem] w-full'>
         <div className='flex flex-col items-start gap-1 w-full'>
           <label htmlFor="name">Nom</label>
