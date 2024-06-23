@@ -12,6 +12,11 @@ export const CartProvider = ({children}) => {
     const [items, setItems] = useState([]);
     const {user} = useUser();
     const localStorageName = user?.email || null;
+    const clearCart = () => {
+        setItems([]);
+        localStorage.setItem(localStorageName, JSON.stringify([]));
+        
+    }
     const init = () => {
         const localItems = localStorage.getItem(localStorageName);
         if(localItems) {
@@ -62,7 +67,7 @@ export const CartProvider = ({children}) => {
       }
     }, [items]);
     return (
-        <CartContext.Provider value={{items, setItems, addItem}}>
+        <CartContext.Provider value={{items, setItems, addItem, clearCart}}>
             {children}
         </CartContext.Provider>
     )

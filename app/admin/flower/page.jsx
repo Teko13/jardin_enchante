@@ -16,7 +16,7 @@ export default async function Page() {
             <div className='flex flex-col items-center gap-10'>
                 <div className="flex w-full h-[50vh] bg-black items-center justify-center">
                     <h1 className='text-white text-[4rem] font-black'>
-                        TOUTES LES FLEURS PUBLIÉES
+                      GESTION DES FLEURS
                     </h1>
                 </div>
 
@@ -35,7 +35,7 @@ export default async function Page() {
         <div className='flex flex-col items-center gap-10'>
             <div className="flex w-full lg:h-[50vh] h-[30vh] bg-black items-center justify-center">
                 <h1 className='text-white text-[4rem] font-black'>
-                    TOUTES LES FLEURS PUBLIÉES
+                    GESTION DES FLEURS
                 </h1>
             </div>
 

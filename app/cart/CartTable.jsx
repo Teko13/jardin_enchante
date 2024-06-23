@@ -4,12 +4,18 @@ import { useCart } from '../(context)/cartContext';
 import { getFlowersById } from '../(flower_manager)/flower_getter';
 import Link from 'next/link';
 import { styles } from '../style';
+import { MdOutlineDeleteOutline } from "react-icons/md";
 
 export default function CartTable() {
-  const { items } = useCart();
+  const { items, clearCart } = useCart();
   const [detailItems, setDetailItems] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
+  const [origin, setOrigin] = useState("");
 
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, [])
+  
   useEffect(() => {
     if (items.length > 0) {
       const ids = items.map(i => i.id);
@@ -51,9 +57,12 @@ export default function CartTable() {
           </tr>
         </tfoot>
       </table>
-      {typeof window !== 'undefined' && (
-        <Link className={`${styles.btnPrimary} w-fit my-9`} href={`${window.location.origin}/checkout`} >Commander</Link>
-      )}
+        <div className='flex items-center gap-5'>
+          <Link className={`${styles.btnPrimary} w-fit my-9`} href={`${origin}/checkout`} >Commander</Link>
+          <button title='Vider le panier' className={`${styles.btnWarning}`} onClick={() => {clearCart()}} >
+            <MdOutlineDeleteOutline className='text-[2.5rem]' />
+          </button>
+        </div>
     </div>
   );
 }
@@ -62,14 +71,12 @@ function FlowerRow({ flower, items }) {
   const { addItem } = useCart();
   const item = items.find(i => i.id === flower.id);
   const quantity = item?.quantity || 0;
-
   const handleQuantityChange = (e) => {
     const newQuantity = Number(e.target.value);
     addItem(flower.id, newQuantity);
   };
-
   const totalPrice = (flower.price * quantity / 100).toFixed(2);
-
+  
   return (
     <tr className="grid grid-cols-3 gap-2 p-3 border-t-0 border-solid border-black">
       <td className="flex items-center gap-4">

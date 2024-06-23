@@ -45,6 +45,10 @@ export function FlowerDetail({ flower }) {
     addItem(flower.id, quantity);
     toast.success("Votre article a bien été ajouté");
   }
+  const buy = () => {
+    handleAddFlower();
+    router.push('/cart');
+  }
 
   return (
     <div className="flex flex-col lg:w-[30%] w-[80%] md:w-[40%] my-[8rem]">
@@ -74,7 +78,7 @@ export function FlowerDetail({ flower }) {
           </div>
           <div className='grid grid-cols-2 gap-5'>
             <button onClick={() => handleAddFlower()} className={`${styles.btnPrimary} inline-block w-full`}>Ajouter au panier</button>
-            <Link href="/cart" className={`${styles.btnSecondary} inline-block w-full`}>Acheter</Link>
+            <button onClick={() => buy()} className={`${styles.btnSecondary} inline-block w-full`}>Acheter</button>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FormView from './FormView'
 import { customFetch } from '@/app/customeFetch';
 import { useAuthorization } from '@/app/(authorization)/useAuthorization';
@@ -9,13 +9,17 @@ export default function UpdateForm({flower}) {
     const {custom} = customFetch();
     const auth = useAuthorization();
   const [name, setName] = useState(flower.name);
-  const uploadUrl = window.location.origin + "/api/admin/flower/upload";
-  const url = window.location.origin + "/api/admin/flower/" + flower.id;
   const [description, setDescription] = useState(flower.description);
   const [price, setPrice] = useState(flower.price / 100);
   const router = useRouter();
   const [submitFile, setSubmitFile] = useState(null);
   const [prevImg, setPrevImg] = useState(flower.image_url);
+  const [uploadUrl, setUploadUrl] = useState("");
+    const [url, setUrl] = useState("");
+    useEffect(() => {
+      setUrl(window.location.origin + "/api/admin/flower");
+      setUploadUrl(window.location.origin + "/api/admin/flower/upload")
+    }, [])
 
   const handleSubmit = async (e) => {
         e.preventDefault();
