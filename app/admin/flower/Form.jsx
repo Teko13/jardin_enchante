@@ -10,8 +10,8 @@ import FormView from './FormView';
 
 export default function Form() {
     const auth = useAuthorization();
-    const uploadUrl = "http://localhost:3000/api/admin/flower/upload";
-    const url = "http://localhost:3000/api/admin/flower";
+    const uploadUrl = window.location.origin + "/api/admin/flower/upload";
+    const url = window.location.origin + "/api/admin/flower";
     const {custom} = customFetch()
     const [prevImg, setPrevImg] = useState(null);
     const [name, setName] = useState("");
@@ -42,6 +42,7 @@ export default function Form() {
                 headers: auth,
                 body
             });
+            console.log(newFlower);
             router.push("/" + newFlower.slug)
         }
     }

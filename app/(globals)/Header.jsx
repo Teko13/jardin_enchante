@@ -24,11 +24,11 @@ function Header() {
 const LgHeader = () => {
   return (
     <div className='bg-white grid grid-cols-[30%_50%_25%] p-3 items-center w-full'>
-      <div className="w-full flex items-center pl-2">
+      <a href='/' className="w-full flex items-center pl-2">
         <h1 className='text-[2rem] font-black'>
           Le Jardin Enchanté
         </h1>
-      </div>
+      </a>
       <div className="w-full flex items-center justify-center">
         <ul className='flex gap-[1rem] items-center'>
           <li className='text-black hover:text-pink'>

@@ -9,8 +9,8 @@ export default function UpdateForm({flower}) {
     const {custom} = customFetch();
     const auth = useAuthorization();
   const [name, setName] = useState(flower.name);
-  const uploadUrl = "http://localhost:3000/api/admin/flower/upload";
-  const url = "http://localhost:3000/api/admin/flower/" + flower.id;
+  const uploadUrl = window.location.origin + "/api/admin/flower/upload";
+  const url = window.location.origin + "/api/admin/flower/" + flower.id;
   const [description, setDescription] = useState(flower.description);
   const [price, setPrice] = useState(flower.price / 100);
   const router = useRouter();

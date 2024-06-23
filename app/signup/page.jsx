@@ -40,7 +40,7 @@ export default function Login() {
   return (
     <div className='min-w-screen min-h-screen flex items-center justify-center'>
         <div className={`${styles.border} rounded-[2rem] lg:w-[30%] w-[80%] md:w-[40%] flex flex-col items-center gap-10 p-4`}>
-            <h1 className='text-[2rem] font-black'>Connexion</h1>
+            <h1 className='text-[2rem] font-black'>Inscription</h1>
             {
                 error && (
                     <span className='text-red text-[0.8rem] '>
@@ -88,7 +88,7 @@ export default function Login() {
                       onChange={(e) => setPassword(e.target.value)}
                       value={password} required />
                 </div>
-                <button type='submit' className={`${styles.btnPrimary} w-full my-[2rem]`}>Se Connecter</button>
+                <button type='submit' className={`${styles.btnPrimary} w-full my-[2rem]`}>S'inscrir</button>
             </form>
         </div>
     </div>
