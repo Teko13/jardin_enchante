@@ -89,6 +89,7 @@ export default function Login() {
                       value={password} required />
                 </div>
                 <button type='submit' className={`${styles.btnPrimary} w-full my-[2rem]`}>S'inscrir</button>
+                <a href="/login" className="text-pink underline" >Ou connectez-vous</a>
             </form>
         </div>
     </div>

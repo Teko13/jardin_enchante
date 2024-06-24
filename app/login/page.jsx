@@ -29,7 +29,9 @@ export default function Login() {
             saveToken(res.token, cookiesName);
             setEmail("");
             setPassword("");
-            router.push("/");
+            if (typeof window !== 'undefined') {
+                window.location.href = '/';
+            }
         })
         .catch((e) => {
             console.log(e.message);
@@ -68,6 +70,7 @@ export default function Login() {
                       value={password} />
                 </div>
                 <button type='submit' className={`${styles.btnPrimary} w-full my-[2rem]`}>Se Connecter</button>
+                <a href="/signup" className="text-pink underline" >Ou créer un compte</a>
             </form>
         </div>
     </div>
