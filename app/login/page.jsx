@@ -30,9 +30,9 @@ export default function Login() {
             saveToken(res.token, cookiesName);
             setEmail("");
             setPassword("");
-            if (typeof window !== 'undefined') {
-                window.location.href = '/';
-            }
+            // if (typeof window !== 'undefined') {
+            //     window.location.href = '/';
+            // }
         })
         .catch((e) => {
             console.log(e.message);
