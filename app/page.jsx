@@ -56,9 +56,9 @@ const reviews = [
           <p className="text-center">
             Découvrez notre collection unique de bouquets frais, parfaits pour chaque occasion. Faites sourire vos proches avec nos créations florales.
           </p>
-          <button className={`${styles.btnPrimary}`}>
+          <Link href="/shop" className={`${styles.btnPrimary}`}>
             Voir la boutique
-          </button>
+          </Link>
         </div>
       </div>
       <div className="flex justify-center lg:my-[2rem] my-[1rem]">
