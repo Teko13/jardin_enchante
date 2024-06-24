@@ -10,7 +10,10 @@ export async function POST(req, {params}){
         last_name: submitData.last_name,
         email: submitData.email,
         password: submitData.password,
-        role: "admin"
+    }
+    const checkUserEmptyTable = await prisma.user.findFirst();
+    if(!checkUserEmptyTable) {
+        data[role] = "admin";
     }
     const hashPassword = await bcrypt.hash(data.password, 10);
     data.password = hashPassword;

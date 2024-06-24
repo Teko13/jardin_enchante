@@ -47,7 +47,7 @@ function Footer() {
             </ul>
         </div>
     </div>
-    <div className='w-full bg-[#000000] flex items-center justify-center text-white text-[1.3rem]'>Powered by @Teko_Fabrice</div>
+    <div className='w-full bg-[#000000] mb-[5rem] lg:mb-0 flex items-center justify-center text-white text-[1.3rem]'>Powered by @Teko_Fabrice</div>
     </footer>
   )
 }

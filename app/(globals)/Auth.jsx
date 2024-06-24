@@ -15,9 +15,9 @@ export default function Auth() {
                 </div>
             ) || (
                 <div className="flex items-center gap-[1rem]">
-                    <sapn className="p-3 rounded-full bg-black text-white font-black">
+                    <span className="p-3 rounded-full bg-black text-white font-black">
                         {`${user.first_name.charAt(0).toUpperCase()}${user.last_name.charAt(0).toUpperCase()}`}
-                    </sapn>
+                    </span>
                     <button onClick={() => logout()} className={`${styles.btnPrimary}`}>
                         Déconnexion
                     </button>

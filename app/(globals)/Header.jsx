@@ -14,7 +14,7 @@ function Header() {
   }, [])
   
   return (
-    <nav className='w-full z-[99] fixed top-0 left-0 right-0'>
+    <nav className='w-full px-5 lg:px-0 z-[99] fixed top-0 left-0 right-0'>
       {windowWidth > 768 ? <LgHeader /> : <MobilHeader />}
       <AdminNavbar />
     </nav>
@@ -23,7 +23,7 @@ function Header() {
 
 const LgHeader = () => {
   return (
-    <div className='bg-white grid grid-cols-[30%_50%_25%] p-3 items-center w-full'>
+    <div className='bg-white grid grid-cols-[30%_40%_30%] p-3 items-center w-full'>
       <a href='/' className="w-full flex items-center pl-2">
         <h1 className='text-[2rem] font-black'>
           Le Jardin Enchanté
@@ -42,7 +42,7 @@ const LgHeader = () => {
           </li>
         </ul>
       </div>
-      <div className="w-full flex items-center gap-[2rem] justify-end">
+      <div className="w-full flex items-center gap-[2rem] justify-around">
         <Cart />
         <Favorite />
         <div className="flex items-center">
@@ -58,9 +58,11 @@ const MobilHeader = () => {
   return (
     <>
       <div className="flex items-center justify-between w-full bg-white">
-        <h1 className='text-[2rem] font-black'>
+        <a href="/">
+            <h1 className='text-[2rem] font-black'>
           Le Jardin Enchanté
         </h1>
+        </a>
         <button onClick={() => toggleMenu(!menu)}> 
           {menu ? "X" : <CiMenuBurger />}
         </button>
