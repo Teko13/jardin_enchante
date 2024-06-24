@@ -24,11 +24,11 @@ function Header() {
 const LgHeader = () => {
   return (
     <div className='bg-white grid grid-cols-[30%_40%_30%] p-3 items-center w-full'>
-      <a href='/' className="w-full flex items-center pl-2">
+      <Link href='/' className="w-full flex items-center pl-2">
         <h1 className='text-[2rem] font-black'>
           Le Jardin Enchanté
         </h1>
-      </a>
+      </Link>
       <div className="w-full flex items-center justify-center">
         <ul className='flex gap-[1rem] items-center'>
           <li className='text-black hover:text-pink'>
@@ -58,11 +58,11 @@ const MobilHeader = () => {
   return (
     <>
       <div className="flex items-center justify-between w-full bg-white">
-        <a href="/">
+        <Link href="/">
             <h1 className='text-[2rem] font-black'>
           Le Jardin Enchanté
         </h1>
-        </a>
+        </Link>
         <button onClick={() => toggleMenu(!menu)}> 
           {menu ? "X" : <CiMenuBurger />}
         </button>
