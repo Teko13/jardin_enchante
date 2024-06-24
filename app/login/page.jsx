@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { styles } from '../style'
 import { useUser } from '../(context)/userContext'
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Login() {
     const {login, saveToken, cookiesName} = useUser();
@@ -70,7 +71,7 @@ export default function Login() {
                       value={password} />
                 </div>
                 <button type='submit' className={`${styles.btnPrimary} w-full my-[2rem]`}>Se Connecter</button>
-                <a href="/signup" className="text-pink underline" >Ou créer un compte</a>
+                <Link href="/signup" className="text-pink underline" >Ou créer un compte</Link>
             </form>
         </div>
     </div>

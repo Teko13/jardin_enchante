@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { styles } from '../style'
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -89,7 +90,7 @@ export default function Login() {
                       value={password} required />
                 </div>
                 <button type='submit' className={`${styles.btnPrimary} w-full my-[2rem]`}>S'inscrir</button>
-                <a href="/login" className="text-pink underline" >Ou connectez-vous</a>
+                <Link href="/login" className="text-pink underline" >Ou connectez-vous</Link>
             </form>
         </div>
     </div>
