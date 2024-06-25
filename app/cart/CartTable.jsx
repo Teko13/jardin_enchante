@@ -57,12 +57,16 @@ export default function CartTable() {
           </tr>
         </tfoot>
       </table>
-        <div className='flex items-center gap-5'>
+        {
+          (items.length > 0) && (
+            <div className='flex items-center gap-5'>
           <Link className={`${styles.btnPrimary} w-fit my-9`} href={`${origin}/checkout`} >Commander</Link>
           <button title='Vider le panier' className={`${styles.btnWarning}`} onClick={() => {clearCart()}} >
             <MdOutlineDeleteOutline className='text-[2.5rem]' />
           </button>
         </div>
+          )
+        }
     </div>
   );
 }

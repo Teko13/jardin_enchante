@@ -14,7 +14,7 @@ function Header() {
   }, [])
   
   return (
-    <nav className='w-full px-5 lg:px-0 z-[99] fixed top-0 left-0 right-0'>
+    <nav className='w-full px-0 z-[99] fixed top-0 left-0 right-0'>
       {windowWidth > 768 ? <LgHeader /> : <MobilHeader />}
       <AdminNavbar />
     </nav>
@@ -57,7 +57,7 @@ const MobilHeader = () => {
   const [menu, toggleMenu] = useState(false);
   return (
     <>
-      <div className="flex items-center justify-between w-full bg-white">
+      <div className="flex items-center justify-between px-3 w-full bg-white">
         <Link href="/">
             <h1 className='text-[2rem] font-black'>
           Le Jardin Enchanté
@@ -83,7 +83,7 @@ const MobilHeader = () => {
           </li>
         </ul>
       )}
-      <div className='bottom-0 grid grid-cols-2 w-full fixed bg-white border-black border-solid border-[3px]'>
+      <div className='bottom-0 grid grid-cols-2 w-full fixed bg-white border-black border-solid border-[3px] border-x-0'>
         <div className="flex justify-center py-[1rem] w-full">
           <Cart />
         </div>
